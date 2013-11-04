@@ -1,0 +1,40 @@
+<head>
+  <title>Keenhome User Login</title>
+  <style type="text/css">
+    .label {text-align: right}
+    .error {color: red}
+  </style>
+
+</head>
+
+<center>
+<font size="12px" color="purple">
+</h1>Keenhome User Login Page </h1>
+</font>
+
+{% block content %}
+
+  {% if form.errors %}
+    <p class="error">Sorry, that's not a valid username or password</p>
+  {% endif %}
+
+  <form action="" method="post">
+	{% csrf_token %}
+	
+    <table border="0" cellpadding="0" >
+        {{form.as_table}}        
+    </table>
+
+    <input type="submit" value="login"/>
+  </form>
+  
+  <form action="/keenhome/accounts/register">
+	<input type="submit" value="New User Signup" />
+  </form>
+  
+  <form action="http://www.mykeenhome.com">
+	<input type="submit" value="Product Introduction" />
+  </form>
+</center>
+
+{% endblock %}

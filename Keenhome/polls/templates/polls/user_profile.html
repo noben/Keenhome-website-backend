@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title>Keenhome User Profile</title>
+</head>
+
+<body>
+    <center>
+		<font size="12px" color="purple">
+			Profile Information
+		</font>
+	</center>
+	
+	<center>
+	<ul>
+    	<li>{{ name }}</li>
+		<li>{{ productNo }}</li>
+		<li>{{ location }}</li>
+		<li>{{ average_temp }}</li>
+		<li>{{ home_type }}</li>
+    </ul>
+	</center>
+	
+</body>
+
+<center>
+<form action="/keenhome/">
+	To the main page
+	<input type="submit" value="Main Page" />
+</form>
+
+<form action="/keenhome/accounts/logout">
+	Logout
+	<input type="submit" value="Logout" />
+</form>
+</center>
+
+</html>
