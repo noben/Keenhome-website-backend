@@ -1,0 +1,51 @@
+<html>
+<head>
+    <title>Keenhome User Control Panel</title>
+</head>
+
+<body>
+    <center>
+		<font size="12px" color="purple">
+			Control Panel
+		</font>
+	</center>
+	
+	<center>
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+	
+	<center>
+    <form action="" method="post">
+  	{% csrf_token %}
+	
+      <table border="0" cellpadding="0" >
+          {{form.as_table}}        
+      </table>
+
+      <input type="submit" value="update"/>
+    </form>
+	</center>
+	
+</body>
+
+<center>
+<form action="/keenhome/">
+	To the main page
+	<input type="submit" value="Main Page" />
+</form>
+
+<form action="/keenhome/control/current_status/">
+	To current control status
+	<input type="submit" value="Current Status" />
+</form>
+
+<form action="/keenhome/accounts/logout">
+	Logout
+	<input type="submit" value="Logout" />
+</form>
+</center>
+
+</html>

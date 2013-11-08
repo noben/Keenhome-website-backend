@@ -1,0 +1,39 @@
+<head>
+  <title>Keenhome User Logout</title>
+  <style type="text/css">
+    .label {text-align: right}
+    .error {color: red}
+  </style>
+
+</head>
+
+<center>
+<font size="12px" color="purple">
+</h1> Logout Success </h1>
+</font>
+
+{% block content %}
+
+	<form action = "/keenhome/accounts/login/">
+		<font size="5px">
+			Login
+		</font>
+		<input type="submit" value="login">
+	</form>
+  
+  <form action="/keenhome/accounts/register">
+	<font size="5px">
+		New Signup
+	</font>
+	<input type="submit" value="New User Signup" />
+  </form>
+  
+  <form action="http://www.mykeenhome.com">
+	<font size="5px">
+		Product Information
+	</font>
+	<input type="submit" value="Product Introduction" />
+  </form>
+</center>
+
+{% endblock %}

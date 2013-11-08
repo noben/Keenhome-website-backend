@@ -1,0 +1,42 @@
+<html>
+<head>
+    <title>Keenhome User Current Status</title>
+</head>
+
+<body>
+    <center>
+		<font size="12px" color="purple">
+			Current Status
+		</font>
+	</center>
+	
+	<center>
+	<ul>
+    	<li>On_Off: {{ on_off }}</li>
+		<li>Auto_Manu: {{ auto_manu }}</li>
+		<li>Temp_Dinningroom: {{ temp_dinningroom }}</li>
+		<li>Temp_Livingroom: {{ temp_livingroom }}</li>
+    </ul>
+	</center>
+	
+</body>
+
+<center>
+	
+	<form action="/keenhome/control/">
+		To Control Panel
+		<input type="submit" value="Control Panel" />
+	</form>
+
+<form action="/keenhome/">
+	To the main page
+	<input type="submit" value="Main Page" />
+</form>
+
+<form action="/keenhome/accounts/logout">
+	Logout
+	<input type="submit" value="Logout" />
+</form>
+</center>
+
+</html>
