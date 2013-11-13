@@ -18,7 +18,7 @@ from django.http import HttpResponseRedirect
 
 #import user defined application functions
 from polls.models import Poll, Choice, UserProfile
-from polls.forms import RegisterForm, LoginForm
+from polls.forms import RegisterForm, LoginForm, UserProfileForm
 
 def index(request):
     if not request.user.is_authenticated():
@@ -80,8 +80,8 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    # Redirect to a success page.
-    return HttpResponse('<title>Logout Page</title> <center><h1>Logout Success</h1></center>')
+    # Redirect to a logout page.
+    return render(request, 'polls/logout.html', {})
 
 #User Register View    
 def register(request):  
@@ -120,7 +120,45 @@ def user_profile(request):
                'productNo': productNo,
                'location': location, 
                'average_temp': average_temp,
-               'home_type': home_type
+               'home_type': home_type,
                }
     return render(request, 'polls/user_profile.html', context)
+
+
+def user_profile_update(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/keenhome/accounts/login/')
+    UserProfile = request.user.get_profile()
+    if request.method == 'POST':
+        form=UserProfileForm(request.POST)
+        if form.is_valid():
+            UserProfile.name = form.cleaned_data["name"]
+            UserProfile.productNo = form.cleaned_data["productNo"]
+            UserProfile.location = form.cleaned_data["location"]
+            UserProfile.average_temp = form.cleaned_data["average_temp"]
+
+            #problem happens here:
+            UserProfile.home_type = form.cleaned_data["home_type"]
+
+            UserProfile.save()
+            return HttpResponseRedirect('/keenhome/accounts/user_profile/')
+        else:
+            form = UserProfileForm()      
+            return render_to_response("polls/user_profile_update.html", {'form':form}, context_instance=RequestContext(request))
+
+    else:
+        form = UserProfileForm()
+        return render_to_response("polls/user_profile_update.html", {'form':form}, context_instance=RequestContext(request))
+
+
+#FAQs and Comments page
+def faq(request):
+    return render(request, 'polls/faq_page.html', {})
+    
+def comments(request):
+    return render(request, 'polls/comments_page.html', {})
+    
+
+
+
 

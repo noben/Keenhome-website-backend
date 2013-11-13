@@ -1,5 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.forms import ModelForm
+from polls.models import UserProfile
 
 class RegisterForm(forms.Form):  
     email=forms.EmailField(label="Email",max_length=30,widget=forms.TextInput(attrs={'size': 30,}))      
@@ -24,6 +26,39 @@ class LoginForm(forms.Form):
     username=forms.CharField(label="Name",max_length=30,widget=forms.TextInput(attrs={'size': 20,}))
     password=forms.CharField(label="Password",max_length=30,widget=forms.PasswordInput(attrs={'size': 20,}))
 
+
+'''
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['name', 'productNo', 'location', 'average_temp', 'home_type']
+'''
+
+
+class UserProfileForm(forms.Form):
+    name = forms.CharField(label="Name", max_length=30, widget=forms.TextInput(attrs={'size':     20,}))
+    productNo = forms.CharField(label="ProductNo", max_length=50, widget=forms.TextInput(attrs={'size': 20,}))
+    location = forms.CharField(label="Location", max_length=50, widget=forms.TextInput(attrs={'size': 20,}))
+    average_temp = forms.CharField(label="Average_Temp", max_length=10, widget=forms.TextInput(attrs={'size': 20,}))
+
+    HOME_TYPE = (
+        ('AP', 'Apartment/Condo'),
+        ('SH', 'Single House/Residential'),
+        ('ST', 'Studio'),
+        ('TH', 'Townhouse'),
+        ('MH', 'Moblie Home'),
+    )
+
+    home_type = forms.ChoiceField(label="home_type", choices=HOME_TYPE)
+
+
+
+    
+    
+    
+    
+    
+    
         
         
         

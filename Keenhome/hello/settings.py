@@ -126,7 +126,10 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    #main app containing all user stuffs, including registration, login/logout and user          profile
     'polls',
+    #control application module
+    'control'
 )
 
 #User profile module: defined in the form of "appname.modelname, and not appname.models.modelname"

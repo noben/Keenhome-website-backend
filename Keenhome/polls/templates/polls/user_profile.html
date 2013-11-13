@@ -12,17 +12,27 @@
 	
 	<center>
 	<ul>
-    	<li>{{ name }}</li>
-		<li>{{ productNo }}</li>
-		<li>{{ location }}</li>
-		<li>{{ average_temp }}</li>
-		<li>{{ home_type }}</li>
+    	<li>User Name: {{ name }}</li>
+		<li>Product Number: {{ productNo }}</li>
+		<li>Location: {{ location }}</li>
+		<li>Average Temperature: {{ average_temp }}</li>
+		<li>Home Type: {{ home_type }}</li>
     </ul>
 	</center>
 	
 </body>
 
 <center>
+	Update this profile
+	<form action="/keenhome/accounts/user_profile_update/">
+		<input type="submit" value="Update Profile">
+	</form>
+	
+	<form action="/keenhome/">
+		To Control Panel
+		<input type="submit" value="Control Panel" />
+	</form>
+
 <form action="/keenhome/">
 	To the main page
 	<input type="submit" value="Main Page" />
