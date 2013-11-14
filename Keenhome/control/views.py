@@ -76,8 +76,8 @@ def living_room(request):
     
     Living_Room = LivingRoom.objects.get(user__username=request.user.username)
     if request.method == 'POST':
-        form=LivingRoomControl(request.POST)
-        if form.isvalid():
+        form = LivingRoomControl(request.POST)
+        if form.is_valid():
             Living_Room.on_off = form.cleaned_data["on_off"]
             Living_Room.temp = form.cleaned_data["temp"]
             Living_Room.save()
@@ -86,12 +86,12 @@ def living_room(request):
             on_off = Living_Room.on_off
             temp = Living_Room.temp
             form = LivingRoomControl()      
-            return render_to_response("control/control.html", {'form':form, 'on_off':on_off, 'temp':temp}, context_instance=RequestContext(request))
+            return render_to_response("control/livingroom.html", {'form':form, 'on_off':on_off, 'temp':temp}, context_instance=RequestContext(request))
     else:
         on_off = Living_Room.on_off
         temp = Living_Room.temp
         form = LivingRoomControl()
-        return render_to_response("control/control.html", {'form':form, 'on_off':on_off, 'temp':temp}, context_instance=RequestContext(request))    
+        return render_to_response("control/livingroom.html", {'form':form, 'on_off':on_off, 'temp':temp}, context_instance=RequestContext(request))    
         
 
     
@@ -103,7 +103,7 @@ def dinning_room(request):
     Dinning_Room = DinningRoom.objects.get(user__username=request.user.username)
     if request.method == 'POST':
         form=DinningRoomControl(request.POST)
-        if form.isvalid():
+        if form.is_valid():
             Dinning_Room.on_off = form.cleaned_data["on_off"]
             Dinning_Room.temp = form.cleaned_data["temp"]
             Dinning_Room.save()
@@ -112,12 +112,12 @@ def dinning_room(request):
             on_off = Dinning_Room.on_off
             temp = Dinning_Room.temp
             form = DinningRoomControl()      
-            return render_to_response("control/control.html", {'form':form, 'on_off':on_off, 'temp':temp}, context_instance=RequestContext(request))
+            return render_to_response("control/dinning_room.html", {'form':form, 'on_off':on_off, 'temp':temp}, context_instance=RequestContext(request))
     else:
         on_off = Dinning_Room.on_off
         temp = Dinning_Room.temp
         form = DinningRoomControl()
-        return render_to_response("control/control.html", {'form':form, 'on_off':on_off, 'temp':temp}, context_instance=RequestContext(request))    
+        return render_to_response("control/dinning_room.html", {'form':form, 'on_off':on_off, 'temp':temp}, context_instance=RequestContext(request))    
         
     
 
@@ -129,7 +129,7 @@ def bed_room1(request):
     Bed_Room1 = BedRoom1.objects.get(user__username=request.user.username)
     if request.method == 'POST':
         form=BedRoom1Control(request.POST)
-        if form.isvalid():
+        if form.is_valid():
             Bed_Room1.on_off = form.cleaned_data["on_off"]
             Bed_Room1.temp = form.cleaned_data["temp"]
             Bed_Room1.save()
@@ -156,7 +156,7 @@ def bed_room2(request):
     Bed_Room2 = BedRoom2.objects.get(user__username=request.user.username)
     if request.method == 'POST':
         form=BedRoom2Control(request.POST)
-        if form.isvalid():
+        if form.is_valid():
             Bed_Room2.on_off = form.cleaned_data["on_off"]
             Bed_Room2.temp = form.cleaned_data["temp"]
             Bed_Room2.save()
@@ -182,7 +182,7 @@ def bed_room3(request):
     kit_chen = BedRoom3.objects.get(user__username=request.user.username)
     if request.method == 'POST':
         form=BedRoom3Control(request.POST)
-        if form.isvalid():
+        if form.is_valid():
             Bed_Room3.on_off = form.cleaned_data["on_off"]
             Bed_Room3.temp = form.cleaned_data["temp"]
             Bed_Room3.save()
@@ -217,12 +217,12 @@ def kitchen(request):
             on_off = Kit_chen.on_off
             temp = Kit_chen.temp
             form = KitchenControl()      
-            return render_to_response("control/bedroom3.html", {'form':form, 'on_off':on_off, 'temp':temp}, context_instance=RequestContext(request))
+            return render_to_response("control/kitchen.html", {'form':form, 'on_off':on_off, 'temp':temp}, context_instance=RequestContext(request))
     else:
         on_off = Kit_chen.on_off
         temp = Kit_chen.temp
         form = KitchenControl()
-        return render_to_response("control/bedroom3.html", {'form':form, 'on_off':on_off, 'temp':temp}, context_instance=RequestContext(request))    
+        return render_to_response("control/kitchen.html", {'form':form, 'on_off':on_off, 'temp':temp}, context_instance=RequestContext(request))    
     
        
        

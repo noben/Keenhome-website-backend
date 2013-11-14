@@ -46,9 +46,6 @@ post_save.connect(create_control_information, sender=User)
 class LivingRoom(models.Model):
     '''Living Room object'''
     user = models.OneToOneField(User)
-    
-    def __init__(self, temp=65):
-        self.temp=temp
         
     TURN_ON_OFF = (
         ('ON', 'On'),
@@ -75,9 +72,6 @@ post_save.connect(create_control_livingroom, sender=User)
 class DinningRoom(models.Model):
     '''Dinning Room object'''
     user = models.OneToOneField(User)
-    
-    def __init__(self, temp=65):
-        self.temp=temp
         
     TURN_ON_OFF = (
         ('ON', 'On'),
@@ -104,9 +98,6 @@ post_save.connect(create_control_dinningroom, sender=User)
 class Kitchen(models.Model):
     '''Kitchen object'''
     user = models.OneToOneField(User)
-    
-    def __init__(self, temp=65):
-        self.temp=temp
         
     TURN_ON_OFF = (
         ('ON', 'On'),
@@ -127,15 +118,12 @@ def create_control_kitchen(sender, instance, created, **kwargs):
     if created:
         Kitchen.objects.create(user=instance)
 
-post_save.connect(create_control_Kitchen, sender=User)
+post_save.connect(create_control_kitchen, sender=User)
 
         
 class BedRoom1(models.Model):
     '''Kitchen object'''
     user = models.OneToOneField(User)
-    
-    def __init__(self, temp=65):
-        self.temp=temp
     
     TURN_ON_OFF = (
         ('ON', 'On'),
@@ -163,9 +151,6 @@ class BedRoom2(models.Model):
     '''Kitchen object'''
     user = models.OneToOneField(User)
     
-    def __init__(self, temp=65):
-        self.temp=temp
-    
     TURN_ON_OFF = (
         ('ON', 'On'),
         ('OFF', 'Off'),
@@ -192,9 +177,6 @@ class BedRoom3(models.Model):
     '''Kitchen object'''
     user = models.OneToOneField(User)
     
-    def __init__(self, temp=65):
-        self.temp=temp
-    
     TURN_ON_OFF = (
         ('ON', 'On'),
         ('OFF', 'Off'),
@@ -215,7 +197,7 @@ def create_control_bedroom3(sender, instance, created, **kwargs):
         BedRoom3.objects.create(user=instance)
 
 post_save.connect(create_control_bedroom3, sender=User)
-        
+
         
         
         

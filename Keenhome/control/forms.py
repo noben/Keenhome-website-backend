@@ -47,7 +47,7 @@ class LivingRoomControl(forms.Form):
     )
     
     on_off = forms.ChoiceField(label="on_off", choices=TURN_ON_OFF)
-    temp = forms.ChoiceField(label="on_off", choices=TEMP)
+    temp = forms.ChoiceField(label="temperature", choices=TEMP)
     
 class DinningRoomControl(forms.Form):
     
@@ -63,7 +63,7 @@ class DinningRoomControl(forms.Form):
     )
     
     on_off = forms.ChoiceField(label="on_off", choices=TURN_ON_OFF)
-    temp = forms.ChoiceField(label="on_off", choices=TEMP)
+    temp = forms.ChoiceField(label="temperature", choices=TEMP)
     
 class KitchenControl(forms.Form):
     
@@ -95,7 +95,7 @@ class BedRoom1Control(forms.Form):
     )
     
     on_off = forms.ChoiceField(label="on_off", choices=TURN_ON_OFF)
-    temp = forms.ChoiceField(label="on_off", choices=TEMP)
+    temp = forms.ChoiceField(label="temperature", choices=TEMP)
     
 class BedRoom2Control(forms.Form):
     
@@ -111,7 +111,7 @@ class BedRoom2Control(forms.Form):
     )
     
     on_off = forms.ChoiceField(label="on_off", choices=TURN_ON_OFF)
-    temp = forms.ChoiceField(label="on_off", choices=TEMP)
+    temp = forms.ChoiceField(label="temperature", choices=TEMP)
     
 class BedRoom3Control(forms.Form):
     
@@ -127,7 +127,7 @@ class BedRoom3Control(forms.Form):
     )
     
     on_off = forms.ChoiceField(label="on_off", choices=TURN_ON_OFF)
-    temp = forms.ChoiceField(label="on_off", choices=TEMP)
+    temp = forms.ChoiceField(label="temperature", choices=TEMP)
     
     
     
