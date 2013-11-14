@@ -6,16 +6,18 @@
 <body>
     <center>
 		<font size="12px" color="purple">
-			Current Status
+			Current Status Of All Rooms
 		</font>
 	</center>
 	
 	<center>
 	<ul>
-    	<li>On_Off: {{ on_off }}</li>
-		<li>Auto_Manu: {{ auto_manu }}</li>
-		<li>Temp_Dinningroom: {{ temp_dinningroom }}</li>
-		<li>Temp_Livingroom: {{ temp_livingroom }}</li>
+    	<li>Livingroom: {{ LR_on_off }}, Temperature: {{ LR_temp }} </li>
+		<li>Kitchen: {{ KC_on_off}}, Temperature: {{ KC_temp }}</li>
+		<li>Dinningroom: {{  DR_on_off  }}, Temperature: {{ DR_temp }}</li>
+		<li>Bedroom 1: {{ BD1_on_off }}, Temperature: {{ BD1_temp }}</li>
+		<li>Bedroom 2: {{ BD2_on_off  }}, Temperature: {{ BD2_on_off }}</li>
+		<li>Bedroom 3: {{ BD3_on_off }}, Temperature: {{ BD3_temp }}</li>
     </ul>
 	</center>
 	

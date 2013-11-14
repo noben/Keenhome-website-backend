@@ -23,8 +23,7 @@ from control.forms import ControlInformationForm
 from control.models import LivingRoom, DinningRoom, Kitchen, BedRoom1, BedRoom2, BedRoom3
 from control.forms import LivingRoomControl, DinningRoomControl, KitchenControl, BedRoom1Control, BedRoom2Control, BedRoom3Control
     
-         
- 
+
 def control(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/keenhome/accounts/login/')
@@ -56,21 +55,56 @@ def current_status(request):
     #the only problem happens here: how to get the ControlInformation
     Current_Status = ControlInformation.objects.get(user__username=request.user.username) 
     
+    Living_Room = LivingRoom.objects.get(user__username=request.user.username)
+    Dinning_Room = DinningRoom.objects.get(user__username=request.user.username)
+    Kit_chen = Kitchen.objects.get(user__username=request.user.username)
+    Bed_Room1 = BedRoom1.objects.get(user__username=request.user.username)
+    Bed_Room2 = BedRoom2.objects.get(user__username=request.user.username)
+    Bed_Room3 = BedRoom3.objects.get(user__username=request.user.username)
+    
+    LR_on_off = Living_Room.on_off
+    DR_on_off = Dinning_Room.on_off
+    KC_on_off = Kit_chen.on_off
+    BD1_on_off = Bed_Room1.on_off
+    BD2_on_off = Bed_Room2.on_off
+    BD3_on_off = Bed_Room3.on_off
+    
+    LR_temp = Living_Room.temp
+    DR_temp = Dinning_Room.temp
+    KC_temp = Kit_chen.temp
+    BD1_temp = Bed_Room1.temp
+    BD2_temp = Bed_Room2.temp
+    BD3_temp = Bed_Room3.temp
+    
     on_off = Current_Status.turn_on_off
     auto_manu = Current_Status.auto_manu
     temp_dinningroom = Current_Status.temp_dinningroom
     temp_livingroom = Current_Status.temp_livingroom
        
-    context = {'on_off': on_off,
-               'auto_manu': auto_manu,
-               'temp_dinningroom': temp_dinningroom, 
-               'temp_livingroom': temp_livingroom,
-               }
+    context = {
+            'LR_on_off':LR_on_off,
+            'DR_on_off':DR_on_off,
+            'KC_on_off':KC_on_off,
+            'BD1_on_off':BD1_on_off,
+            'BD2_on_off':BD2_on_off,
+            'BD3_on_off':BD3_on_off,
+            
+            'LR_temp':LR_temp,
+            'DR_temp':DR_temp,
+            'KC_temp':KC_temp,
+            'BD1_temp':BD1_temp,
+            'BD2_temp':BD2_temp,
+            'BD3_temp':BD3_temp,
+        
+            'on_off': on_off,
+            'auto_manu': auto_manu,
+            'temp_dinningroom': temp_dinningroom, 
+            'temp_livingroom': temp_livingroom,
+    }
     return render(request, 'control/current_control_status.html', context)
     
-
-def living_room(request):
     
+def living_room(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/keenhome/accounts/login/')
     
@@ -96,7 +130,6 @@ def living_room(request):
 
     
 def dinning_room(request):
-    
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/keenhome/accounts/login/')
         
@@ -112,17 +145,16 @@ def dinning_room(request):
             on_off = Dinning_Room.on_off
             temp = Dinning_Room.temp
             form = DinningRoomControl()      
-            return render_to_response("control/dinning_room.html", {'form':form, 'on_off':on_off, 'temp':temp}, context_instance=RequestContext(request))
+            return render_to_response("control/dinningroom.html", {'form':form, 'on_off':on_off, 'temp':temp}, context_instance=RequestContext(request))
     else:
         on_off = Dinning_Room.on_off
         temp = Dinning_Room.temp
         form = DinningRoomControl()
-        return render_to_response("control/dinning_room.html", {'form':form, 'on_off':on_off, 'temp':temp}, context_instance=RequestContext(request))    
+        return render_to_response("control/dinningroom.html", {'form':form, 'on_off':on_off, 'temp':temp}, context_instance=RequestContext(request))    
         
     
 
 def bed_room1(request):
-    
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/keenhome/accounts/login/')
     
@@ -149,7 +181,6 @@ def bed_room1(request):
     
     
 def bed_room2(request):
-    
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/keenhome/accounts/login/')
     
@@ -175,11 +206,10 @@ def bed_room2(request):
     
     
 def bed_room3(request):
-    
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/keenhome/accounts/login/')
     
-    kit_chen = BedRoom3.objects.get(user__username=request.user.username)
+    Bed_Room3 = BedRoom3.objects.get(user__username=request.user.username)
     if request.method == 'POST':
         form=BedRoom3Control(request.POST)
         if form.is_valid():
@@ -195,20 +225,19 @@ def bed_room3(request):
     else:
         on_off = Bed_Room3.on_off
         temp = Bed_Room3.temp
-        form = BedRoom2Control()
+        form = BedRoom3Control()
         return render_to_response("control/bedroom3.html", {'form':form, 'on_off':on_off, 'temp':temp}, context_instance=RequestContext(request))    
     
     
 
 def kitchen(request):
-    
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/keenhome/accounts/login/')
     
     Kit_chen = Kitchen.objects.get(user__username=request.user.username)
     if request.method == 'POST':
         form=KitchenControl(request.POST)
-        if form.isvalid():
+        if form.is_valid():
             Kit_chen.on_off = form.cleaned_data["on_off"]
             Kit_chen.temp = form.cleaned_data["temp"]
             Kit_chen.save()
