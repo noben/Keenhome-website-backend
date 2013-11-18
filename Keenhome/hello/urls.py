@@ -1,8 +1,5 @@
 from django.conf.urls import patterns, include, url
 
-#usr login/logout module
-from django.contrib.auth.views import login, logout
-
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
@@ -10,6 +7,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^keenhome/', include('polls.urls', namespace="polls")),
     url(r'^keenhome/', include('control.urls', namespace="control")),
+    url(r'^keenhome/', include('learning_record.urls', namespace="learning_record")),
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),

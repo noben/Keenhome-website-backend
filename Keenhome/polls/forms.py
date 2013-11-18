@@ -21,18 +21,11 @@ class RegisterForm(forms.Form):
         if not emails:  
             return self.cleaned_data["email"]  
         raise forms.ValidationError("This email address has been used.")
+  
         
 class LoginForm(forms.Form):
     username=forms.CharField(label="Name",max_length=30,widget=forms.TextInput(attrs={'size': 20,}))
     password=forms.CharField(label="Password",max_length=30,widget=forms.PasswordInput(attrs={'size': 20,}))
-
-
-'''
-class UserProfileForm(forms.ModelForm):
-    class Meta:
-        model = UserProfile
-        fields = ['name', 'productNo', 'location', 'average_temp', 'home_type']
-'''
 
 
 class UserProfileForm(forms.Form):
