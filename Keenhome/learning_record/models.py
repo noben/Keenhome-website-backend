@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from collections import namedtuple
 
+#import model from the control app
+from control.models import LivingRoom, DinningRoom, Kitchen, BedRoom1, BedRoom2, BedRoom3
+
 #date and time for the record history:
 import datetime
 from django.utils import timezone
