@@ -1,21 +1,31 @@
 # Django settings for hello project.
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+import settings_production_arguments as product_setting
+import socket
+
+# Also, we can use this way to judge if the code is running on the server
+# if socket.gethostname() == 'my-laptop':
+#     DEBUG = TEMPLATE_DEBUG = True
+# else:
+#     DEBUG = TEMPLATE_DEBUG = False
+
+DEBUG = product_setting.DEBUG
+TEMPLATE_DEBUG = product_setting.TEMPLATE_DEBUG
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
+    ('Luming Nie', 'lumingnie@gmail.com'),
 )
 
 MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'luming',                      # Or path to database file if using sqlite3.
+        'ENGINE': product_setting.DATABASE_ENGINE, # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': product_setting.DATABASE_NAME,   # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
-        'USER': 'luming',
-        'PASSWORD': '123',
+        'USER': product_setting.DATABASE_USER,
+        'PASSWORD': product_setting.DATABASE_PASSWORD,
         'HOST': '127.0.0.1',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '',                      # Set to empty string for default.
     }
@@ -23,7 +33,8 @@ DATABASES = {
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = []
+# [important]------the ALLOWED_HOSTS below is needed to be modified rather than ['*'] 
+ALLOWED_HOSTS = product_setting.ALLOWED_HOSTS
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -108,7 +119,7 @@ ROOT_URLCONF = 'hello.urls'
 WSGI_APPLICATION = 'hello.wsgi.application'
 
 TEMPLATE_DIRS = (
-    '/Users/nieluming/Desktop/Django/hello/templates',
+    '/Users/nieluming/Desktop/Django/keenhome/templates',
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
