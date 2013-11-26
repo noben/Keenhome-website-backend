@@ -17,9 +17,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
 
 #import user defined application functions
-from learning_record.models import RecordLivingroom, RecordDiningroom, RecordKitchen
+from learning_record.models import RecordLivingRoom, RecordDinningRoom, RecordKitchen
 
 def show_records(request):
-    
+    pass
 
 

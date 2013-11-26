@@ -129,7 +129,8 @@ INSTALLED_APPS = (
     #main app containing all user stuffs, including registration, login/logout and user          profile
     'polls',
     #control application module
-    'control'
+    'control',
+    'learning_record'
 )
 
 #User profile module: defined in the form of "appname.modelname, and not appname.models.modelname"

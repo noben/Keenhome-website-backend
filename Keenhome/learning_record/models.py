@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
-from collections import namedtuple
+
 
 #import model from the control app
 from control.models import LivingRoom, DinningRoom, Kitchen, BedRoom1, BedRoom2, BedRoom3
@@ -11,46 +11,203 @@ import datetime
 from django.utils import timezone
 
 
-#--------------------------------------Models for History-------------------------------------#
+#----------------------------------Models for History--------------------------------#
 # Create your models here.
-class RecordLivingroom(models.Model):
-    user = models.OneToOneField(User)
+class RecordLivingRoom(models.Model):
+    room = models.ForeignKey(LivingRoom)
     
-    pub_date = models.DateTimeField('date published')
+    datetime = models.DateTimeField('recordtime', auto_now=true)
+    
+    TURN_ON_OFF = (
+        ('ON', 'On'),
+        ('OFF', 'Off'),
+    )
+    
+    TEMP = (
+        ('HIGH', 'High'),
+        ('MEDIUM', 'Medium'),
+        ('LOW', 'Low'),
+    )
+    
+    on_off = models.CharField(max_length=2, choices=TURN_ON_OFF)
+    temp = models.CharField(max_length=2, choices=TEMP)
+    
+#signal function: if a user is created, add control livingroom to the user    
+def record_livingroom(sender, instance, created, **kwargs):
+    #the object which is saved can be accessed with **kwargs
+    livingroom = instance
+    record = RecordLivingRoom(on_off=livingroom.on_off, temp=livingroom.temp)
+    record.save() 
+#    if created:
+#        RecordLivingRoom.objects.create(user=instance)
+post_save.connect(record_livingroom, sender=LivingRoom)
 
-    #define a dictionary here with date and time as key values, and temperature, On/Off as values
-    Livingroom = namedtuple("Livingroom", ["date", "time"])
+
+
+
+class RecordDinningRoom(models.Model):
+    room = models.ForeignKey(DinningRoom)
+    
+    datetime = models.DateTimeField('recordtime', auto_now=true)
+    
+    TURN_ON_OFF = (
+        ('ON', 'On'),
+        ('OFF', 'Off'),
+    )
+    
+    TEMP = (
+        ('HIGH', 'High'),
+        ('MEDIUM', 'Medium'),
+        ('LOW', 'Low'),
+    )
+    
+    on_off = models.CharField(max_length=2, choices=TURN_ON_OFF)
+    temp = models.CharField(max_length=2, choices=TEMP)
+    
+#signal function: if a user is created, add control livingroom to the user    
+def record_dinningroom(sender, instance, created, **kwargs):
+    #the object which is saved can be accessed with **kwargs
+    dinningroom = instance
+    record = RecordDinningRoom(on_off=dinningroom.on_off, temp=dinningroom.temp)
+    record.save() 
+#    if created:
+#        RecordLivingRoom.objects.create(user=instance)
+post_save.connect(record_dinningroom, sender=DinningRoom)
     
     
-
-def create_record_livingroom(sender, instance, created, **kwargs):
-    if created:
-        RecordLivingroom.objects.create(user=instance)
-post_save.connect(create_record_livingroom, sender=User)
-
-
-
-class RecordDiningroom(models.Model):
-    user = models.OneToOneField(User)
-
-    #define a dictionary here with date and time as key values, and temperature, On/Off as values
-    
-    
-def create_record_diningroom(sender, instance, created, **kwargs):
-    if created:
-        RecordDiningroom.objects.create(user=instance)
-post_save.connect(create_record_diningroom, sender=User)
-
 
 
 class RecordKitchen(models.Model):
-    user = models.OneToOneField(User)
-
-    #define a dictionary here with date and time as key values, and temperature, On/Off as values
+    room = models.ForeignKey(Kitchen)
     
+    datetime = models.DateTimeField('recordtime', auto_now=true)
     
-def create_record_kitchen(sender, instance, created, **kwargs):
-    if created:
-        RecordKitchen.objects.create(user=instance)
-post_save.connect(create_record_kitchen, sender=User)
+    TURN_ON_OFF = (
+        ('ON', 'On'),
+        ('OFF', 'Off'),
+    )
+    
+    TEMP = (
+        ('HIGH', 'High'),
+        ('MEDIUM', 'Medium'),
+        ('LOW', 'Low'),
+    )
+    
+    on_off = models.CharField(max_length=2, choices=TURN_ON_OFF)
+    temp = models.CharField(max_length=2, choices=TEMP)
+    
+#signal function: if a user is created, add control livingroom to the user    
+def record_kitchen(sender, instance, created, **kwargs):
+    #the object which is saved can be accessed with **kwargs
+    kitchen = instance
+    record = RecordKitchen(on_off=kitchen.on_off, temp=kitchen.temp)
+    record.save() 
+#    if created:
+#        RecordLivingRoom.objects.create(user=instance)
+post_save.connect(record_kitchen, sender=Kitchen)
+    
 
+
+
+
+class RecordBedRoom1(models.Model):
+    room = models.ForeignKey(BedRoom1)
+    
+    datetime = models.DateTimeField('recordtime', auto_now=true)
+    
+    TURN_ON_OFF = (
+        ('ON', 'On'),
+        ('OFF', 'Off'),
+    )
+    
+    TEMP = (
+        ('HIGH', 'High'),
+        ('MEDIUM', 'Medium'),
+        ('LOW', 'Low'),
+    )
+    
+    on_off = models.CharField(max_length=2, choices=TURN_ON_OFF)
+    temp = models.CharField(max_length=2, choices=TEMP)
+    
+#signal function: if a user is created, add control livingroom to the user    
+def record_bedroom1(sender, instance, created, **kwargs):
+    #the object which is saved can be accessed with **kwargs
+    bedroom1 = instance
+    record = RecordBedRoom1(on_off=bedroom1.on_off, temp=bedroom1.temp)
+    record.save() 
+#    if created:
+#        RecordLivingRoom.objects.create(user=instance)
+post_save.connect(record_bedroom1, sender=BedRoom1)
+    
+
+
+
+class RecordBedRoom2(models.Model):
+    room = models.ForeignKey(BedRoom2)
+    
+    datetime = models.DateTimeField('recordtime', auto_now=true)
+    
+    TURN_ON_OFF = (
+        ('ON', 'On'),
+        ('OFF', 'Off'),
+    )
+    
+    TEMP = (
+        ('HIGH', 'High'),
+        ('MEDIUM', 'Medium'),
+        ('LOW', 'Low'),
+    )
+    
+    on_off = models.CharField(max_length=2, choices=TURN_ON_OFF)
+    temp = models.CharField(max_length=2, choices=TEMP)
+    
+#signal function: if a user is created, add control livingroom to the user    
+def record_bedroom2(sender, instance, created, **kwargs):
+    #the object which is saved can be accessed with **kwargs
+    bedroom2 = instance
+    record = RecordBedRoom2(on_off=bedroom2.on_off, temp=bedroom2.temp)
+    record.save() 
+#    if created:
+#        RecordLivingRoom.objects.create(user=instance)
+post_save.connect(record_bedroom2, sender=BedRoom2) 
+    
+
+
+
+class RecordBedRoom3(models.Model):
+    room = models.ForeignKey(BedRoom3)
+    
+    datetime = models.DateTimeField('recordtime', auto_now=true)
+    
+    TURN_ON_OFF = (
+        ('ON', 'On'),
+        ('OFF', 'Off'),
+    )
+    
+    TEMP = (
+        ('HIGH', 'High'),
+        ('MEDIUM', 'Medium'),
+        ('LOW', 'Low'),
+    )
+    
+    on_off = models.CharField(max_length=2, choices=TURN_ON_OFF)
+    temp = models.CharField(max_length=2, choices=TEMP)
+    
+#signal function: if a user is created, add control livingroom to the user    
+def record_bedroom3(sender, instance, created, **kwargs):
+    #the object which is saved can be accessed with **kwargs
+    bedroom3 = instance
+    record = RecordBedRoom3(on_off=bedroom3.on_off, temp=bedroom3.temp)
+    record.save() 
+#    if created:
+#        RecordLivingRoom.objects.create(user=instance)
+post_save.connect(record_bedroom3, sender=BedRoom3)
+
+
+
+
+
+
+
+
+    
